@@ -10,6 +10,11 @@ function deObjetoAmatriz(objeto){
       C: 3
     }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
   //Escribe tu código aquí
+  var matriz = [];
+  for (let clave in objeto) {
+    matriz.push([clave,objeto[clave]]);
+  }
+  return matriz;
 }
 
 
@@ -18,6 +23,15 @@ function numberOfCharacters(string) {
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 } 
   //Escribe tu código aquí
+  var obj = {};
+  for (let i=0;i<string.length;i++) {
+    if (obj.hasOwnProperty(string[i])) {
+      obj[string[i]] = obj[string[i]]+1;
+    } else {
+      obj[string[i]]=1;
+    }
+  }  
+  return obj;
 }
 
 
@@ -26,6 +40,16 @@ function capToFront(s) {
   //al principio de la palabra.
   //Ejemplo: soyHENRY -> HENRYsoy
   //Escribe tu código aquí
+  var upper = "";
+  var lower = ""
+  for (let i=0;i<s.length;i++) {
+    if (s[i]===s[i].toUpperCase()) {
+      upper = upper + s[i];
+    } else {
+      lower = lower + s[i];
+    }
+  }
+  return upper + lower;
 }
 
 
@@ -35,6 +59,31 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí
+  //
+  //***Imperative code***/
+  // var rev = "";
+  // var stop = -1;
+  // for (let i=0;i<str.length;i++) {
+  //   if (str[i]===" ") {
+  //     for (let j=i;j>stop;j--) {
+  //       rev = rev + str[j];
+  //     }
+  //     stop = i;
+  //   }
+  // }
+  // rev = rev + " ";
+  // for (let k=str.length-1;k>stop;k--) {
+  //   rev = rev + str[k]
+  // }
+  // return rev.slice(1);
+  //*********************/
+  //
+  //***Declarative code***/
+  var array = str.split(" ");
+  var rev = array.map(function(n) {
+    return n.split("").reverse("").join("");
+    });
+  return rev.join(" ");
 } 
 
 
@@ -43,6 +92,19 @@ function capicua(numero){
   //La misma debe retornar: "Es capicua" si el número se número que se lee igual de 
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
   //Escribe tu código aquí
+  var array = numero.toString().split("");
+  var j=array.length-1;
+  var prove=0;
+  for (let i=0; i<array.length;i++) {
+    if (array[i]!==array[j]) {
+      prove = "No es capicua";
+      break;
+    } else {
+      prove = "Es capicua";
+    }
+    j--;
+  }
+  return prove;
 }
 
 
@@ -50,6 +112,18 @@ function deleteAbc(cadena){
   //Define una función que elimine las letras "a", "b" y "c" de la cadena dada 
   //y devuelva la versión modificada o la misma cadena, en caso de contener dichas letras.
   //Escribe tu código aquí
+  var whithoutabc = "";
+  for (let i=0;i<cadena.length;i++) {
+    switch (cadena[i]) {
+      case "a":
+      case "b":
+      case "c":        
+        break;
+      default:
+        whithoutabc = whithoutabc + cadena[i];
+    }
+  }
+  return whithoutabc;
 }
 
 
@@ -57,6 +131,21 @@ function sortArray(arr) {
   //La función recibe una matriz de strings. Ordena la matriz en orden creciente de longitudes de cadena
   //Ej: Recibe ---> ["You", "are", "beautiful", "looking"] || Devuelve ---> [“You", "are", "looking", "beautiful"]
   //Escribe tu código aquí
+  var ordered = [];
+  for (let i=0;i<arr.length;i++) {
+    var prove = 0;
+    for (let j=0; j<arr.length;j++) {
+      if (arr[i].length>arr[j].length) {
+        prove++;
+      }
+    }
+    if (ordered[prove]) {
+      ordered[prove+1] = arr[i];
+    } else {
+      ordered[prove] = arr[i];
+    }
+  }  
+  return ordered;
 }
 
 
@@ -66,6 +155,15 @@ function buscoInterseccion(arreglo1, arreglo2){
   //Si no tienen elementos en común, retornar un arreglo vacío.
   //Aclaración: los arreglos no necesariamente tienen la misma longitud
   //Escribe tu código aquí  
+  var intersectionarray = [];
+  for (let i=0;i<arreglo1.length;i++) {
+    for (let j=0;j<arreglo2.length;j++) {
+      if (arreglo1[i]==arreglo2[j]) {
+        intersectionarray.push(arreglo1[i]);        
+      }
+    }
+  }
+  return intersectionarray;
 }
 
 
